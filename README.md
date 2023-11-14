@@ -1,6 +1,6 @@
 # export-pdf
 
-The purpose of this application is to export data into a PDF file.
+The purpose of this application is to export data into a PDF file using OpenPDF library.
 
 # Technologies:
 
