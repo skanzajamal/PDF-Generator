@@ -6,7 +6,6 @@ import com.lowagie.text.Font;
 import com.lowagie.text.pdf.PdfPCell;
 import com.lowagie.text.pdf.PdfPTable;
 import com.lowagie.text.pdf.PdfWriter;
-import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletResponse;
 import java.awt.*;
@@ -48,29 +47,22 @@ public class PdfGenerator {
 
         for (Employee employee : employeeList) {
 
-            PdfPCell idCell = new PdfPCell(new Phrase(String.valueOf(employee.getId())));
-            idCell.setPaddingLeft(4);
-            idCell.setVerticalAlignment(Element.ALIGN_MIDDLE);
-            idCell.setHorizontalAlignment(Element.ALIGN_LEFT);
-            table.addCell(idCell);
+            PdfPCell cell = new PdfPCell();
+            cell.setPaddingLeft(4);
+            cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
+            cell.setHorizontalAlignment(Element.ALIGN_LEFT);
 
-            PdfPCell fullNameCell = new PdfPCell(new Phrase(employee.getFullName()));
-            fullNameCell.setPaddingLeft(4);
-            fullNameCell.setVerticalAlignment(Element.ALIGN_MIDDLE);
-            fullNameCell.setHorizontalAlignment(Element.ALIGN_LEFT);
-            table.addCell(fullNameCell);
+            cell.setPhrase(new Phrase(String.valueOf(employee.getId())));
+            table.addCell(cell);
 
-            PdfPCell jobTitleCell = new PdfPCell(new Phrase(employee.getJobTitle()));
-            jobTitleCell.setVerticalAlignment(Element.ALIGN_MIDDLE);
-            jobTitleCell.setHorizontalAlignment(Element.ALIGN_LEFT);
-            jobTitleCell.setPaddingRight(4);
-            table.addCell(jobTitleCell);
+            cell.setPhrase(new Phrase(employee.getFullName()));
+            table.addCell(cell);
 
-            PdfPCell departmentCell = new PdfPCell(new Phrase(employee.getDepartment()));
-            departmentCell.setVerticalAlignment(Element.ALIGN_MIDDLE);
-            departmentCell.setHorizontalAlignment(Element.ALIGN_LEFT);
-            departmentCell.setPaddingRight(4);
-            table.addCell(departmentCell);
+            cell.setPhrase(new Phrase(employee.getJobTitle()));
+            table.addCell(cell);
+
+            cell.setPhrase(new Phrase(employee.getDepartment()));
+            table.addCell(cell);
         }
 
         document.add(table);
