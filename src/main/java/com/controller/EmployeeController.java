@@ -27,15 +27,20 @@ public class EmployeeController {
     @GetMapping(value = "/export-to-pdf", produces = MediaType.APPLICATION_PDF_VALUE)
     public void generatePdfReport(HttpServletResponse response) throws DocumentException, IOException {
 
+        PdfGenerator generator = new PdfGenerator();
+        List<Employee> listOfEmployees = employeeService.getEmployeeList();
+        generator.generatePdf(listOfEmployees, setHeader(response));
+    }
+
+    public HttpServletResponse setHeader(HttpServletResponse response) {
+
         response.setContentType("application/pdf");
         DateFormat dateFormat = new SimpleDateFormat("YYYY-MM-DD:HH:MM:SS");
         String currentDateTime = dateFormat.format(new Date());
         String headerKey = "Content-Disposition";
         String headerValue = "attachment; filename=employee" + currentDateTime + ".pdf";
         response.setHeader(headerKey, headerValue);
-        List<Employee> listOfEmployees = employeeService.getEmployeeList();
-        PdfGenerator generator = new PdfGenerator();
-        generator.generatePdf(listOfEmployees, response);
+        return response;
     }
 
 }// ENDCLASS
