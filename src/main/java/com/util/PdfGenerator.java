@@ -3,6 +3,7 @@ package com.util;
 import com.entity.Employee;
 import com.lowagie.text.*;
 import com.lowagie.text.Font;
+import com.lowagie.text.Image;
 import com.lowagie.text.pdf.PdfPCell;
 import com.lowagie.text.pdf.PdfPTable;
 import com.lowagie.text.pdf.PdfWriter;
@@ -22,6 +23,10 @@ public class PdfGenerator {
         // Getting instance of PdfWriter
         PdfWriter.getInstance(document, response.getOutputStream());
         document.open();
+
+        // add logo
+        Image jpg = Image.getInstance("..\\logo.jpg");
+        document.add(jpg);
 
         // add text to PDF file
         Font font = FontFactory.getFont(FontFactory.HELVETICA_BOLD, 14, Color.black);
