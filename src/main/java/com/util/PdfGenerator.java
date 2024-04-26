@@ -25,7 +25,7 @@ public class PdfGenerator {
         document.open();
 
         // add logo
-        Image jpg = Image.getInstance("..\\logo.jpg");
+        Image jpg = Image.getInstance("logo.jpg");
         document.add(jpg);
 
         // add text to PDF file
