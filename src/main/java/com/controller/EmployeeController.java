@@ -32,7 +32,7 @@ public class EmployeeController {
         generator.generatePdf(listOfEmployees, setHeader(response));
     }
 
-    public HttpServletResponse setHeader(HttpServletResponse response) {
+    private HttpServletResponse setHeader(HttpServletResponse response) {
 
         response.setContentType("application/pdf");
         DateFormat dateFormat = new SimpleDateFormat("YYYY-MM-DD:HH:MM:SS");
