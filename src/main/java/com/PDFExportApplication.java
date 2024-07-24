@@ -1,7 +1,7 @@
 package com;
 
-import com.entity.Employee;
-import com.repository.EmployeeRepository;
+import com.entity.StaffEntity;
+import com.repository.StaffRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -21,7 +21,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class PDFExportApplication implements CommandLineRunner {
 
     @Autowired
-    EmployeeRepository employeeRepository;
+    StaffRepository employeeRepository;
 
     public static void main(String[] args) {
         SpringApplication.run(PDFExportApplication.class, args);
@@ -36,12 +36,12 @@ public class PDFExportApplication implements CommandLineRunner {
 
             //save list of employees
             employeeRepository.saveAll(Arrays.asList(
-                    new Employee(nextVal(seq), "Emily Davis", "Sr. Manger", "IT"),
-                    new Employee(nextVal(seq), "Theodore Dinh", "Technical Architect", "IT"),
-                    new Employee(nextVal(seq), "Luna Sanders", "Director", "Finance"),
-                    new Employee(nextVal(seq), "Penelope Jordan", "Computer Systems Manager", "Accounting"),
-                    new Employee(nextVal(seq), "Eli Jones", "Manager", "Human Resources"),
-                    new Employee(nextVal(seq), "Leonardo Dixon", "Analyst", "Sales")
+                    new StaffEntity(nextVal(seq), "Emily Davis", "Sr. Manger", "IT"),
+                    new StaffEntity(nextVal(seq), "Theodore Dinh", "Technical Architect", "IT"),
+                    new StaffEntity(nextVal(seq), "Luna Sanders", "Director", "Finance"),
+                    new StaffEntity(nextVal(seq), "Penelope Jordan", "Computer Systems Manager", "Accounting"),
+                    new StaffEntity(nextVal(seq), "Eli Jones", "Manager", "Human Resources"),
+                    new StaffEntity(nextVal(seq), "Leonardo Dixon", "Analyst", "Sales")
             ));
         }
     }
@@ -54,7 +54,7 @@ public class PDFExportApplication implements CommandLineRunner {
 
         return new Docket(DocumentationType.SWAGGER_2)
                 .select()
-                .paths(PathSelectors.ant("/api/*"))
+                .paths(PathSelectors.ant("/api/"))
                 .build()
                 .apiInfo(apiDetails());
     }

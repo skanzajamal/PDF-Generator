@@ -1,6 +1,6 @@
 package com.util;
 
-import com.entity.Employee;
+import com.entity.StaffEntity;
 import com.lowagie.text.*;
 import com.lowagie.text.Font;
 import com.lowagie.text.Image;
@@ -16,7 +16,7 @@ import java.util.stream.Stream;
 
 public class PdfGenerator {
 
-    public void generatePdf(List<Employee> employeeList, HttpServletResponse response)  throws DocumentException, IOException {
+    public void generatePdf(List<StaffEntity> employeeList, HttpServletResponse response)  throws DocumentException, IOException {
 
         Document document = new Document();
 
@@ -50,7 +50,7 @@ public class PdfGenerator {
             table.addCell(header);
         });
 
-        for (Employee employee : employeeList) {
+        for (StaffEntity employee : employeeList) {
 
             PdfPCell cell = new PdfPCell();
             cell.setPaddingLeft(4);
