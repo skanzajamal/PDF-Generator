@@ -1,4 +1,4 @@
-# export-pdf
+# PDF-Generator
 
 The purpose of this application is to export data into a PDF file using OpenPDF library.
 
